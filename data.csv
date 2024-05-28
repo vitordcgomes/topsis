@@ -1,0 +1,5 @@
+Supplier,Cost ($/unit) (C1),Quality (score out of 10) (C2),Delivery Time (days) (C3),Reliability (score out of 10) (C4),Environmental Impact (score out of 10) (C5)
+Supplier A,50,8,5,9,7
+Supplier B,60,9,4,8,6
+Supplier C,55,7,6,7,8
+Supplier D,65,8,3,9,5
