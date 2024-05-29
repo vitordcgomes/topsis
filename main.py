@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import topsis
 
 data = pd.read_csv("data.csv")
 print(data)
@@ -15,4 +16,6 @@ print(raw_data, "\n")
 
 # (["Cost", "Quality", "Delivery Time", "Reliability", "Environmental Impact"])
 weights = np.array([0.3, 0.25, 0.2, 0.15, 0.1])
-print(weights)
+print(weights, "\n")
+
+topsis.normalizing_data(raw_data)
