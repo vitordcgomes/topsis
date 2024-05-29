@@ -20,4 +20,6 @@ weights = np.array([0.3, 0.25, 0.2, 0.15, 0.1])
 print(weights, "\n")
 
 
-topsis.topsis(raw_data, criterias, weights)
+result = topsis.topsis(raw_data, criterias, weights)
+
+# topsis.generate_ranking(result)

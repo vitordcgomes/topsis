@@ -49,6 +49,17 @@ def find_ideal_negative_solution(p_matrix, criterias):
     return solution
 
 
+def find_positive_distances_matrix(p_matrix, positive_sol):
+    d_matrix = np.linalg.norm(p_matrix - positive_sol, axis=1)
+    print("\n", d_matrix)
+    return d_matrix
+
+def find_negative_distances_matrix(p_matrix, negative_sol):
+    d_matrix = np.linalg.norm(p_matrix - negative_sol, axis=1)
+    print("\n", d_matrix)
+    return d_matrix
+    
+
 def topsis(raw_data, criterias, weights):
     normalized_data = normalize_data(raw_data)
     p_matrix = apply_weights(normalized_data, weights)
@@ -58,3 +69,13 @@ def topsis(raw_data, criterias, weights):
     
     print(positive_sol, "\n")
     print(negative_sol, "\n")
+    
+    pos_d_matrix = find_positive_distances_matrix(p_matrix, positive_sol)
+    neg_d_matrix = find_negative_distances_matrix(p_matrix, negative_sol)
+    
+    result = neg_d_matrix / (pos_d_matrix + neg_d_matrix)
+    
+    print(result)
+    return result
+
+# def generate_ranking(result):
