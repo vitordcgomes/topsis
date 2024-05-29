@@ -14,8 +14,10 @@ print(attributes, "\n")
 raw_data = np.genfromtxt("data.csv", delimiter=",", skip_header=1, usecols=range(1, 6))
 print(raw_data, "\n")
 
-# (["Cost", "Quality", "Delivery Time", "Reliability", "Environmental Impact"])
+# (["Cost", "Quality", "Delivery Time", "Reliability", "Environmental Impact"]) -> [C, B, C, B, C]
+criterias = ["C", "B", "C", "B", "C"] # Cost x Benefit
 weights = np.array([0.3, 0.25, 0.2, 0.15, 0.1])
 print(weights, "\n")
 
-topsis.normalizing_data(raw_data)
+
+topsis.topsis(raw_data, criterias, weights)
