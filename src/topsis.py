@@ -22,7 +22,7 @@ def read_data(path):
         return data
     
     else:
-        print("Data Path does not exist!")
+        print("Data Path does not exist.")
         exit(0)
     
 
@@ -84,7 +84,7 @@ def read_json_data(path):
             return json.load(file)
         
     else:
-        print("JSON Path does not exist!")
+        print("JSON Path does not exist.")
         exit(0)
     
     
