@@ -1,6 +1,41 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import json
+import os
 
+def read_data(path):
+    if os.path.exists(path):
+        data = pd.read_csv(path)
+        return data
+    
+    else:
+        print("Data Path does not exist!")
+        exit(0)
+    
+
+def get_objects_from_data(data):
+    return data.iloc[:, 0].values
+
+
+def get_attributes_from_data(data):
+    return data.columns[1:].to_numpy()
+
+
+def get_raw_data(path, ncols):
+    return np.genfromtxt(path, delimiter=",", skip_header=1, usecols=range(1, ncols))
+    
+
+def read_json_data(path):
+    if os.path.exists(path):
+        with open(path, 'r') as file:
+            return json.load(file)
+        
+    else:
+        print("JSON Path does not exist!")
+        exit(0)
+    
+    
 def normalize_data(data):
     normalized_data = np.zeros_like(data)
     
@@ -59,7 +94,7 @@ def find_negative_distances_matrix(p_matrix, negative_sol):
 
 def topsis(raw_data, criterias, weights):
     normalized_data = normalize_data(raw_data)
-    p_matrix = apply_weights(normalized_data, weights)
+    p_matrix = apply_weights(normalized_data, np.array(weights))
     
     positive_sol = find_ideal_positive_solution(p_matrix, criterias)
     negative_sol = find_ideal_negative_solution(p_matrix, criterias)
@@ -79,11 +114,15 @@ def generate_ranking(score, objects):
     
 
 def print_result(ranking):
-    print("\nRanking:")
     
-    for i in range(len(ranking)):
-        print(f"{i+1}. {ranking[i][0]} -> Score: {ranking[i][1]:.3f}")
-    print("\n")
+    output_directory = "../output"
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+    
+    with open(output_directory + "/rank.txt", "w") as file:
+        print("Ranking:", file=file)
+        for i in range(len(ranking)):
+            print(f"{i+1}. {ranking[i][0]} -> Score: {ranking[i][1]:.4f}", file=file)
     
     suppliers, score = zip(*ranking)
     
@@ -93,6 +132,6 @@ def print_result(ranking):
     plt.ylabel("Performance Score")
     plt.title("Performance Ranking of Objects - TOPSIS")
 
-    plt.savefig("rank.png")
+    plt.savefig(output_directory + "/rank.png")
 
     

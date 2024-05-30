@@ -1,0 +1,5 @@
+Ranking:
+1. Supplier D -> Score: 0.6339
+2. Supplier B -> Score: 0.6167
+3. Supplier A -> Score: 0.5140
+4. Supplier C -> Score: 0.2485
