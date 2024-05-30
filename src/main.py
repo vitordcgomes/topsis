@@ -16,8 +16,6 @@ json = topsis.read_json_data("../input/data.json")
 criterias = json["criterias"]
 weights = json["weights"]
 
-score = topsis.topsis(raw_data, criterias, weights)
+rank = topsis.topsis(raw_data, criterias, weights, suppliers)
 
-ranking = topsis.generate_ranking(score, suppliers)
-
-topsis.print_result(ranking)
+topsis.print_result(rank)
